@@ -92,27 +92,3 @@ function vendi_notifications_show_notices( $echo = true, $reset = true )
     return $ret;
 
 }
-
-function vendi_notifications_register_plugin_css( $file, $media = 'all' )
-{
-    wp_enqueue_style(   
-                        basename( $file, '.css' ),
-                        plugins_url( '/css/' . $file, VENDI_NOTIFICATIONS_FILE ),
-                        null,
-                        filemtime( VENDI_NOTIFICATIONS_PATH . '/css/' . $file ),
-                        $media
-                    );
-    
-}
-
-function vendi_notifications_register_plugin_js( $file, $footer = true )
-{
-    wp_enqueue_script(   
-                        basename( $file, '.js' ),
-                        plugins_url( '/js/' . $file, VENDI_NOTIFICATIONS_FILE ),
-                        false,
-                        filemtime( VENDI_NOTIFICATIONS_PATH . '/js/' . $file ),
-                        $footer
-                    );
-    
-}
