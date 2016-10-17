@@ -22,7 +22,7 @@ define( 'VENDI_NOTIFICATIONS_URL',  plugin_dir_url( __FILE__ ) );
  * @param  boolean $dismissable        If true, show an "x" that users can click to hide the notice. Default true.
  * @param  boolean $enqueue_css_and_js If true, enqueue the CSS and JS required to show the notices. Default true.
  */
-function vendi_notifications_register_notice( $message, $type, $dismissable = true, $enqueue_css_and_js = true )
+function vendi_notifications_register_notice( string $message, string $type, bool $dismissable = true, bool $enqueue_css_and_js = true )
 {
     if( $enqueue_css_and_js )
     {
@@ -53,12 +53,20 @@ function vendi_notifications_register_notice( $message, $type, $dismissable = tr
     }
 
     $vendi_theme_notifications[ $type ][] = array(
-                                                    'message' => $message,
-                                                    'dismissable' => $dismissable,
+                                                    'message'       => $message,
+                                                    'dismissable'   => $dismissable,
                                             );
 }
 
-function vendi_notifications_show_notices( $echo = true, $reset = true )
+
+/**
+ * Convert the notices to HTML and optionally echo them.
+ * 
+ * @param  boolean $echo  If true, echo the notices, otherwise only return them. Default true.
+ * @param  boolean $reset If true, reset the internal notice array. Default true.
+ * @return string         The HTML for the notices or an empty string.
+ */
+function vendi_notifications_show_notices( bool $echo = true, bool $reset = true )
 {
     $buf = array();
 
